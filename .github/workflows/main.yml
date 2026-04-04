@@ -1,0 +1,65 @@
+name: AI Site Builder
+on:
+  push:
+    paths:
+      - 'config.json' # يعمل السكربت عند تحديث ملف الإعدادات
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: ambassadors/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run AI Builder Script
+        env:
+          GEMINI_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python - <<EOF
+          import os, requests, json, base64
+
+          # جلب البيانات من config.json
+          with open('config.json') as f:
+              config = json.load(f)
+          
+          subdomain = config.get('subdomain')
+          topic = config.get('topic')
+
+          # 1. إنشاء ملف CNAME
+          with open('CNAME', 'w') as f:
+              f.write(subdomain)
+
+          # 2. طلب بناء صفحة Index من AI
+          prompt = f"Create a full landing page HTML for a website about {topic}. Make it modern and SEO friendly."
+          url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key={os.environ['GEMINI_KEY']}"
+          resp = requests.post(url, json={"contents": [{"parts": [{"text": prompt}]}]})
+          html_content = resp.json()['candidates'][0]['content']['parts'][0]['text']
+
+          with open('index.html', 'w') as f:
+              f.write(html_content)
+
+          # 3. إنشاء Sitemap بسيط
+          sitemap = f"""<?xml version="1.0" encoding="UTF-8"?>
+          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+              <url><loc>http://{subdomain}/</loc></url>
+          </urlset>"""
+          with open('map-main.xml', 'w') as f:
+              f.write(sitemap)
+          EOF
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "AI-Builder"
+          git config --global user.email "ai@pbn.com"
+          git add .
+          git commit -m "AI auto-generated site structure"
+          git push
