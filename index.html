@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & Indexing -->
+    <title>99 Orbital Squad | Tactical Digital Operations</title>
+    <meta name="description" content="Official hub for the 99 Orbital Squad. Coordinating high-altitude digital maneuvers and modern squad-based web experiments.">
+    <meta name="keywords" content="99 Orbital Squad, Tactical Web, Digital Operations, Orbital Mechanics, Miniasp">
+    <link rel="canonical" href="https://99-orbital-squad.gh.miniasp.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://99-orbital-squad.gh.miniasp.com/">
+    <meta property="og:title" content="99 Orbital Squad | Tactical Digital Operations">
+    <meta property="og:description" content="Join the squad. Coordinating precision maneuvers in the digital stratosphere. Explore our latest orbital experiments.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1200&h=630&q=80">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://99-orbital-squad.gh.miniasp.com/">
+    <meta property="twitter:title" content="99 Orbital Squad | Tactical Digital Operations">
+    <meta property="twitter:description" content="Join the squad. Coordinating precision maneuvers in the digital stratosphere.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1200&h=630&q=80">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Space+Mono:wght@400;700&display=swap');
+
+        :root {
+            --bg-space: #05070a;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #22d3ee;
+        }
+
+        body {
+            background-color: var(--bg-space);
+            color: #e2e8f0;
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .orbital-glow {
+            text-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+        }
+
+        .scanline {
+            width: 100%;
+            height: 100px;
+            z-index: 5;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(59, 130, 246, 0.1) 50%, rgba(0, 0, 0, 0) 100%);
+            opacity: 0.1;
+            position: absolute;
+            bottom: 100%;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { bottom: 100%; }
+            100% { bottom: -100%; }
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .btn-orbital:hover {
+            background: var(--accent-blue);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative">
+    <div class="scanline"></div>
+    <div id="stars-container" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+
+    <!-- Navigation -->
+    <nav class="p-6 flex justify-between items-center max-w-7xl mx-auto w-full z-10">
+        <div class="text-2xl font-bold tracking-tight flex items-center gap-3">
+            <div class="relative w-8 h-8">
+                <div class="absolute inset-0 border-2 border-cyan-500 rounded-full animate-spin-slow"></div>
+                <div class="absolute top-0 left-1/2 w-2 h-2 bg-white rounded-full -translate-x-1/2"></div>
+            </div>
+            <span class="tracking-[0.15em]">99-ORBITAL</span>
+        </div>
+        <div class="hidden md:flex gap-10 text-xs uppercase tracking-[0.2em] font-semibold text-blue-300">
+            <a href="#" class="hover:text-white transition-colors">Tactical</a>
+            <a href="#" class="hover:text-white transition-colors">Telemetry</a>
+            <a href="#" class="hover:text-white transition-colors">Manifest</a>
+        </div>
+    </nav>
+
+    <!-- Main Section -->
+    <main class="flex-grow flex flex-col items-center justify-center px-6 text-center relative z-10">
+        <div class="mb-6 inline-flex items-center gap-2 px-4 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-cyan-400 text-xs font-bold uppercase tracking-widest">
+            <span class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
+            Live Satellite Feed Active
+        </div>
+        
+        <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tighter orbital-glow">
+            QUADRANT <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">99</span>
+        </h1>
+        
+        <p class="max-w-2xl mx-auto text-blue-100/70 text-lg md:text-xl leading-relaxed mb-12 font-light">
+            Precision-engineered digital maneuvers for the next generation of squad-based infrastructure. Stable. Scalable. In Orbit.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-6 justify-center w-full max-w-md">
+            <button onclick="triggerAction('Initializing Uplink...')" class="btn-orbital px-10 py-4 bg-blue-600 text-white font-bold uppercase tracking-widest transition-all rounded-lg">
+                Initiate Uplink
+            </button>
+            <button onclick="triggerAction('Decrypting Squad Data...')" class="glass-panel px-10 py-4 text-white font-bold uppercase tracking-widest transition-all hover:bg-white/5 rounded-lg">
+                Squad Intel
+            </button>
+        </div>
+
+        <!-- Telemetry Data -->
+        <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 mono text-[10px] uppercase tracking-widest text-blue-400/60">
+            <div>
+                <p>Altitude</p>
+                <p class="text-white text-lg font-bold">408.2 KM</p>
+            </div>
+            <div>
+                <p>Velocity</p>
+                <p class="text-white text-lg font-bold">7.66 KM/S</p>
+            </div>
+            <div>
+                <p>Signal</p>
+                <p class="text-white text-lg font-bold">Nominal</p>
+            </div>
+            <div>
+                <p>Latentcy</p>
+                <p class="text-white text-lg font-bold">14.2 MS</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Action Modal -->
+    <div id="action-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 hidden">
+        <div class="glass-panel p-10 max-w-md w-full border-cyan-500/40 rounded-xl text-center">
+            <div class="w-16 h-16 border-4 border-t-cyan-500 border-blue-900 rounded-full animate-spin mx-auto mb-6"></div>
+            <h4 class="text-cyan-400 font-bold mb-4 uppercase tracking-[0.2em]" id="modal-title">Accessing...</h4>
+            <p id="modal-msg" class="text-blue-100/60 text-sm mb-8 leading-relaxed"></p>
+            <button onclick="closeModal()" class="w-full py-3 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold uppercase text-xs tracking-widest transition-all">Close Terminal</button>
+        </div>
+    </div>
+
+    <footer class="p-8 border-t border-blue-900/30 text-center text-blue-500/40 text-[10px] tracking-[0.4em] uppercase z-10">
+        &copy; <span id="year"></span> 99 Orbital Squad // GH.MINIASP.COM // MISSION CONTROL
+    </footer>
+
+    <script>
+        // Generate Stars
+        const container = document.getElementById('stars-container');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 2 + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.opacity = Math.random();
+            container.appendChild(star);
+        }
+
+        // Set Date
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Modal Logic
+        function triggerAction(msg) {
+            document.getElementById('modal-msg').textContent = msg + " Connecting to 99-Orbital backbone...";
+            document.getElementById('action-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('action-modal').classList.add('hidden');
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
