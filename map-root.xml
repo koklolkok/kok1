@@ -5,4 +5,9 @@
     <loc>https://99-orbital-squad.gh.miniasp.com/map-main.xml</loc>
     <lastmod>2026-04-16</lastmod>
   </sitemap>
+
+  <sitemap>
+    <loc>https://99-orbital-squad.gh.miniasp.com/map-pages.xml</loc>
+    <lastmod>2026-04-16</lastmod>
+  </sitemap>
 </sitemapindex>
